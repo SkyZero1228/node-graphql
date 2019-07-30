@@ -1,0 +1,62 @@
+{
+  "networkMode": "bridge",
+  "containerDefinitions": [
+    {
+      "portMappings": [
+        {
+          "hostPort": 443,
+          "containerPort": 443,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "name": "culturalink-app-container",
+      "environment": [
+        {
+          "name": "S3_CONFIG_BUCKET",
+          "value": "%S3_CONFIG_BUCKET%"
+        },
+        {
+          "name": "SERVER_PROD_HOST",
+          "value": "%SERVER_PROD_HOST%"
+        },
+        {
+          "name": "SERVER_PROD_PORT",
+          "value": "%SERVER_PROD_PORT%"
+        },
+        {
+          "name": "GRAPHQL_PROD_HOST",
+          "value": "%GRAPHQL_PROD_HOST%"
+        },
+        {
+          "name": "GRAPHQL_PROD_PORT",
+          "value": "%GRAPHQL_PROD_PORT%"
+        },
+        {
+          "name": "BROWSER_PROD_HOST",
+          "value": "%BROWSER_PROD_HOST%"
+        },
+        {
+          "name": "BROWSER_PROD_PORT",
+          "value": "%BROWSER_PROD_PORT%"
+        },
+        {
+          "name": "WEBPACK_CONFIG",
+          "value": "%WEBPACK_CONFIG%"
+        }
+      ],
+      "image": "%REPOSITORY_URI%:%BUILD_NUMBER%",
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "%ECS_LOG_GROUP%",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "culturalink-app"
+        }
+      },
+      "cpu": 10,
+      "memoryReservation": 1024
+    }
+  ],
+  "family": "%FAMILY%"
+}

@@ -1,0 +1,7 @@
+{
+  "env": {
+    "TRIPVALET_SENDGRID_API_KEY": "@sendgrid-api-key",
+    "TRIPVALET_PAYMENT_API_KEY": "@payment-api-key",
+    "TRIPVALET_INCENTIVES_PFX_SECRET": "@tvi-pfx-secret"
+  }
+}
